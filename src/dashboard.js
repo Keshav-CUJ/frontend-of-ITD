@@ -25,9 +25,9 @@ function AnomalyDashboard() {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/upload", formData);
+      await axios.post("https://backend-of-itd.onrender.com/upload", formData);
       alert("File uploaded successfully!");
-      const response = await axios.get("http://localhost:5000/get_user_dates");
+      const response = await axios.get("https://backend-of-itd.onrender.com/get_user_dates");
       setUsers(response.data.users);
     } catch (error) {
       console.error("Upload failed:", error);
@@ -40,7 +40,7 @@ function AnomalyDashboard() {
   const handlePredict = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5000/predict");
+      const response = await axios.post("https://backend-of-itd.onrender.com/predict");
       const rawAnomalyData = response.data.anomaly_data;
 
       const minScore = Math.min(...rawAnomalyData.map((d) => d.anomaly_score));
